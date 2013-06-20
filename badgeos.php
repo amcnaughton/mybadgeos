@@ -248,16 +248,9 @@ class BadgeOS {
 
 		wp_register_style( 'badgeos-widget', $css_widget_file, null, '1.0.1' );
 		
-		$tooltip_css_file = file_exists( get_stylesheet_directory() .'/jquery.powertip-light.min.css' )
-			? get_stylesheet_directory_uri() .'/jquery.powertip-light.min.css'
-			: $this->directory_url . 'css/jquery.powertip-light.min.css';
-			
-		wp_register_style( 'badgeos-tooltip-css', $tooltip_css_file, null, '1.0.1' );
-		wp_register_script( 'badgeos-tooltip-script', $this->directory_url . 'js/jquery.powertip.min.js', array( 'jquery' ), '1.0.1', true );	
 	
-		$jquery_theme = apply_filters('badgeos-jquery-ui-theme', 'css/jquery-ui-themes/aristo/Aristo.css');
-		$css_theme_file = $this->directory_url . $jquery_theme;	
-		wp_register_style( 'badgeos-front-jquery-ui-theme', $css_theme_file, null, '1.0.1' );
+	
+
 	}
 
 	/**
