@@ -170,7 +170,7 @@ ul.badgeos-achievement-earners-list li {
 	padding: 3px 10px;
 	text-align: center;
 }
-
+/* TR: begin */
 .badgeos-congrats-popup-thumb {
 	margin-left:auto;
 	margin-right:auto;
@@ -184,3 +184,4 @@ ul.badgeos-achievement-earners-list li {
 	font-size: 0.8em;
 	padding-top: 10px;
 }
+/* TR: end */

@@ -18,7 +18,7 @@
 .widget-achievements-listing .has-thumb .widget-badgeos-item-title {
 	display: block;
 }
-/* numbered badge support */
+/* TR: begin numbered badge support */
 .badgeos-icon img{
 	vertical-align:middle;
 	display:block;
@@ -40,8 +40,7 @@
 .badgeos-icon:hover span{
 	display:block;
 }
-
-/* Credly support */
+/* TR: end */
 .share-credly {
 	position: relative;
 }

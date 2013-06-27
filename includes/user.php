@@ -16,6 +16,7 @@
  * @param  array $args An array of all our relevant arguments
  * @return array       An array of all the achievement objects that matched our parameters, or empty if none
  */
+// TR: begin
 function badgeos_get_user_achievements( $args = array() ) {
 
 	// Setup our default args
@@ -97,6 +98,7 @@ function badgeos_get_user_achievements( $args = array() ) {
 	return array_values( $achievements );
 
 }
+// TR: end
 
 /**
  * Updates the user's earned achievements
@@ -206,8 +208,10 @@ function badgeos_update_users_points( $user_id = 0, $new_points = 0, $admin_id =
 	foreach ( badgeos_get_points_based_achievements() as $achievement )
 		badgeos_maybe_award_achievement_to_user( $achievement->ID );
 
+// TR: begin
 	// call action
  	do_action('badgeos_add_points', $user_id, $achievement_id, $new_points);
+// TR: end
 
 	return $updated_points_total;
 }

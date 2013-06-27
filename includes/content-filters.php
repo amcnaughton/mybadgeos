@@ -214,7 +214,8 @@ function badgeos_reformat_entries( $content ) {
 
 	// now that we're where we want to be, tell the filters to stop removing
 	$GLOBALS['badgeos_reformat_content'] = true;
-
+	
+// TR: begin
 	// the user may have submitted an achievement. save the form before we do anything else
 	if ( is_user_logged_in() ) {
 
@@ -224,13 +225,16 @@ function badgeos_reformat_entries( $content ) {
 		if ( badgeos_save_submission_data() )
 			printf( '<p>%s</p>', __( 'Submission saved successfully.', 'badgeos' ) );
 	}
+// TR: end
 
 	// do badge title markup
 	// $title = '<h1 class="badge-title">'. get_the_title() .'</h1>';
-
+	
+// TR: begin
 	// check if user has earned this Achievement, and add an 'earned' class
 	$achievement = badgeos_get_user_achievements( array( 'achievement_id' => absint( $badge_id ), 'merge' => true) );
 	$class = $achievement ? ' earned' : '';
+// TR: end
 
 	// wrap our content, add the thumbnail and title and add wpautop back
 	$newcontent = '<div class="achievement-wrap'. $class .'">';
@@ -240,10 +244,12 @@ function badgeos_reformat_entries( $content ) {
 	// Points for badge
 	$newcontent .= badgeos_achievement_points_markup();
 	$newcontent .= wpautop( $content );
-
+	
+// TR: begin
 	// include output detailing when the user earned the achievement
 	$newcontent .= badgeos_user_earned_achievement_list_markup($achievement[0]);
-	
+// TR: end	
+
 	// Include output for our steps
 	$newcontent .= badgeos_get_required_achievements_for_achievement_list( $badge_id );
 
@@ -368,7 +374,7 @@ function badgeos_get_required_achievements_for_achievement_list_markup( $steps, 
 
 }
 
-
+// TR: begin
 /**
  * Generate HTML markup for a users earnings of an achievement
  *
@@ -455,11 +461,7 @@ function badgeos_user_earned_achievement_popup( $content, $achievement_id )
 	return $output;
 }
 
-//	$output .= '<script>
-//			jQuery(function() {
-//			jQuery( "#dialog" ).dialog();
-//			});
-//			</script>';
+// TR: end
 
 /**
  * Filter our step titles to link to achievements and achievement type archives

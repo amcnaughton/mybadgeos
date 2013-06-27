@@ -557,8 +557,9 @@ function badgeos_get_achievement_post_thumbnail( $post_id = 0, $image_size = 'ba
 				);
 
 			// Available filter: 'badgeos_default_achievement_post_thumbnail'
+// TR: begin
 			$image = '<img src="' . apply_filters( 'badgeos_default_achievement_post_thumbnail', plugins_url( 'badgeos/images/default-badge.png' ) ) . '" width="' . $image_sizes['width'] . '" height="' . $image_sizes['height'] . '" class="' . $class .'">';
-
+// TR: end
 		}
 	}
 

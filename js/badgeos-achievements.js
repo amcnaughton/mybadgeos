@@ -135,10 +135,11 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	// setup powertips
+// TR: begin
 	$('.tip').powerTip({
 		smartPlacement: 'true'
 	});
+// TR: end
 
 	// Credly popup functionality
 
