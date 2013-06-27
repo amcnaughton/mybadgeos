@@ -215,18 +215,25 @@ function badgeos_reformat_entries( $content ) {
 	// now that we're where we want to be, tell the filters to stop removing
 	$GLOBALS['badgeos_reformat_content'] = true;
 
+	// the user may have submitted an achievement. save the form before we do anything else
+	if ( is_user_logged_in() ) {
+
+		// check if step unlock option is set to submission review
+		get_currentuserinfo();
+
+		if ( badgeos_save_submission_data() )
+			printf( '<p>%s</p>', __( 'Submission saved successfully.', 'badgeos' ) );
+	}
+
 	// do badge title markup
 	// $title = '<h1 class="badge-title">'. get_the_title() .'</h1>';
 
 	// check if user has earned this Achievement, and add an 'earned' class
-	$class = badgeos_get_user_achievements( array( 'achievement_id' => absint( $badge_id ) ) ) ? ' earned' : '';
+	$achievement = badgeos_get_user_achievements( array( 'achievement_id' => absint( $badge_id ), 'merge' => true) );
+	$class = $achievement ? ' earned' : '';
 
 	// wrap our content, add the thumbnail and title and add wpautop back
 	$newcontent = '<div class="achievement-wrap'. $class .'">';
-
-	// Check if current user has earned this achievement
-	$newcontent .= badgeos_has_user_earned_achievement( $badge_id );
-
 	$newcontent .= '<div class="alignleft badgeos-item-image">'. badgeos_get_achievement_post_thumbnail( $badge_id ) .'</div>';
 	// $newcontent .= $title;
 
@@ -234,6 +241,9 @@ function badgeos_reformat_entries( $content ) {
 	$newcontent .= badgeos_achievement_points_markup();
 	$newcontent .= wpautop( $content );
 
+	// include output detailing when the user earned the achievement
+	$newcontent .= badgeos_user_earned_achievement_list_markup($achievement[0]);
+	
 	// Include output for our steps
 	$newcontent .= badgeos_get_required_achievements_for_achievement_list( $badge_id );
 
@@ -357,6 +367,99 @@ function badgeos_get_required_achievements_for_achievement_list_markup( $steps, 
 	return $output;
 
 }
+
+
+/**
+ * Generate HTML markup for a users earnings of an achievement
+ *
+ *
+ * @since  1.0.0
+ * @param  array   $achievement 	 Single entry from the achievement array
+ * @return string           The markup for our list
+ */
+function badgeos_user_earned_achievement_list_markup( $achievement ) {
+
+	// If the user has not earned the achievement, return nothing
+	$instances = count($achievement->instance);
+	
+	if ( ! $instances  )
+		return null;
+		
+	// format title	
+	if($instances == 1)
+		$output = '<h4>' .  __( 'You earned this achievement once:', 'badgeos' ) . '</h4>';
+	else
+		$output = '<h4>' .  sprintf( __( 'You earned this achievement %d times:', 'badgeos' ), $instances) . '</h4>';
+	
+	// Concatenate our output with earned instances if more than one
+	$max = 10;
+	$num = 0;
+	$output .= "<ul>";
+	foreach ( $achievement->instance as $instance ) {
+		if($num++ >= $max) {
+			$remaining = count($achievement->instance) - $max;
+			$output .= "<li>";
+				$output .= sprintf( __( 'And %d more time%s before this.', 'badgeos' ), $remaining, $remaining == 1 ? '' : 's');
+			$output .= "</li>";	
+			break;
+		}
+		$output .= "<li>";
+			$output .= sprintf( __( 'On %s', 'badgeos' ), date_i18n(get_option('date_format'), $instance->date_earned));
+		$output .= "</li>";			
+	}
+	$output .= "</ul>";		
+ $output .= badgeos_user_earned_achievement_popup('content',340);
+	// Return our output
+	return $output;
+
+}
+
+function badgeos_user_earned_achievement_popup( $content, $achievement_id )
+{
+    wp_enqueue_style('badgeos-front-jquery-ui-theme');
+    wp_enqueue_script('jquery-ui-dialog');
+    
+    // only display dialog if there is something to say
+    $message = get_post_meta( $achievement_id, '_badgeos_congratulations_text', true ); 
+    if(empty($message))
+        return;
+    
+    $post = get_post($achievement_id);
+    $thumb = get_the_post_thumbnail($achievement_id);
+    $points = get_post_meta( $achievement_id, '_badgeos_points', true ); 
+                
+	$output .= '<div id="badgeos-congrats-popup" style="display:none" title="'.__( 'Congratulations!', 'badgeos' ).'">';
+		$output .=  '<div class="badgeos-congrats-popup-thumb">'.$thumb.'</div>';
+		$output .=  '<div class="badgeos-congrats-popup-title">'.$post->post_title.'</div>';
+		$output .=  '<div class="badgeos-congrats-popup-message">'.$message.'</div>';
+		if($points > 0) {
+			$output .=  '<div class="badgeos-congrats-popup-points">'.$points.' '.__( 'Points Awarded!', 'badgeos' ).'</div>';		
+		}
+	$output .=  '</div>';
+	
+	$output .= '<script>
+					jQuery(function() {
+		  				jQuery( "#badgeos-congrats-popup" ).dialog({
+							buttons: {
+								 "Share": function() {
+								jQuery( this ).dialog( "close" );
+								},
+								Ok: function() {
+								jQuery( this ).dialog( "close" );
+								}
+							}
+						});
+					});
+				</script>';
+	
+	return $output;
+}
+
+//	$output .= '<script>
+//			jQuery(function() {
+//			jQuery( "#dialog" ).dialog();
+//			});
+//			</script>';
 
 /**
  * Filter our step titles to link to achievements and achievement type archives

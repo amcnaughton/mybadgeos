@@ -206,8 +206,9 @@ function badgeos_submission_form( $atts = array() ) {
 		// Return either the user's submission or the submission form
 		if ( badgeos_check_if_user_has_submission( $user_ID, $atts['achievement_id'] ) )
 			return badgeos_get_user_submissions( '', $atts['achievement_id'] );
-		else
-			return badgeos_get_submission_form( array( 'user_id' => $user_ID, 'achievement_id' => $atts['achievement_id'] ) );
+		else {
+			if(! badgeos_achievement_user_exceeded_max_earnings( $user_ID, $achievement_id )
+				return badgeos_get_submission_form( array( 'user_id' => $user_ID, 'achievement_id' => $atts['achievement_id'] ) );
 
 	} else {
 

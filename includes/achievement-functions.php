@@ -557,7 +557,7 @@ function badgeos_get_achievement_post_thumbnail( $post_id = 0, $image_size = 'ba
 				);
 
 			// Available filter: 'badgeos_default_achievement_post_thumbnail'
-			$image = '<img src="' . apply_filters( 'badgeos_default_achievement_post_thumbnail', 'https://credlyapp.s3.amazonaws.com/badges/af2e834c1e23ab30f1d672579d61c25a_15.png' ) . '" width="' . $image_sizes['width'] . '" height="' . $image_sizes['height'] . '" class="' . $class .'">';
+			$image = '<img src="' . apply_filters( 'badgeos_default_achievement_post_thumbnail', plugins_url( 'badgeos/images/default-badge.png' ) ) . '" width="' . $image_sizes['width'] . '" height="' . $image_sizes['height'] . '" class="' . $class .'">';
 
 		}
 	}

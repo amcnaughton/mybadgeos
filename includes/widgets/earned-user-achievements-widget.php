@@ -13,14 +13,20 @@ class earned_user_achievements_widget extends WP_Widget {
 
 	//build the widget settings form
 	function form( $instance ) {
-		$defaults = array( 'title' => 'My Badges', 'number' => '10', 'point_total' => '' );
+		$defaults = array( 'title' => 'My Badges', 'number' => '10', 'show_text' => '1', 'show_icon' => '1', 'icon_size' => '50' );
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$title = $instance['title'];
 		$number = $instance['number'];
-		$point_total = $instance['point_total'];
+		$show_text = $instance['show_text'];
+		$show_icon = $instance['show_icon'];
+		$icon_size = $instance['icon_size'];
+		
 		?>
             <p><?php _e( 'Title', 'badgeos' ); ?>: <input class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>"  type="text" value="<?php echo esc_attr( $title ); ?>" /></p>
 			<p><?php _e( 'Number to Display (0 = all)', 'badgeos' ); ?>: <input class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>"  type="text" value="<?php echo absint( $number ); ?>" /></p>
+         	<p><?php _e( 'Display Badge Title?', 'badgeos' ); ?>: <input type="checkbox" name="<?php echo $this->get_field_name( 'show_text' ); ?>" value="1" <?php if($show_text) echo 'checked="yes"' ?>/> </p>
+       		<p><?php _e( 'Show Icon?', 'badgeos' ); ?>: <input type="checkbox" name="<?php echo $this->get_field_name( 'show_icon' ); ?>" value="1" <?php if($show_icon) echo 'checked="yes"' ?>/> </p>
+    		<p><?php _e( 'Icon Size (25px minimum)', 'badgeos' ); ?>: <input class="widefat" name="<?php echo $this->get_field_name( 'icon_size' ); ?>"  type="text" value="<?php echo absint( $icon_size ); ?>" /></p>
 			<p><label for="<?php echo $this->get_field_name( 'point_total' ); ?>"><input type="checkbox" id="<?php echo $this->get_field_name( 'point_total' ); ?>" name="<?php echo $this->get_field_name( 'point_total' ); ?>" <?php checked( $point_total, 'on' ); ?> /> <?php _e( 'Display user\'s total points', 'badgeos' ); ?></label></p>
         <?php
 	}
@@ -31,6 +37,9 @@ class earned_user_achievements_widget extends WP_Widget {
 
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['number'] = absint( $new_instance['number'] );
+		$instance['show_text'] = absint( $new_instance['show_text'] );
+		$instance['show_icon'] = absint( $new_instance['show_icon'] );
+		$instance['icon_size'] = absint( $new_instance['icon_size'] );
 		$instance['point_total'] = ( ! empty( $new_instance['point_total'] ) ) ? sanitize_text_field( $new_instance['point_total'] ) : '';
 
 		return $instance;
@@ -53,17 +62,31 @@ class earned_user_achievements_widget extends WP_Widget {
 			if ( $instance['point_total'] == 'on' )
 				echo '<p class="badgeos-total-points">' . sprintf( __( 'My Total Points: %s', 'badgeos' ), '<strong>' . number_format( badgeos_get_users_points() ) . '</strong>' ) . '</p>';
 
-			$achievements = badgeos_get_user_achievements();
+			$achievements = badgeos_get_user_achievements(array('merge' => true));
 
 			if ( is_array( $achievements ) ) {
 
 				$number_to_show = absint( $instance['number'] );
-				$thecount = 0;
+			$show_text = absint( $instance['show_text'] );			
+			$show_icon = absint( $instance['show_icon'] );
+			$icon_size = absint( $instance['icon_size'] );
 
+				$thecount = 0;
+			wp_enqueue_style ( 'badgeos-tooltip-css' );
+			wp_enqueue_script( 'badgeos-tooltip-script' );
 				wp_enqueue_script( 'badgeos-achievements' );
 				wp_enqueue_style( 'badgeos-widget' );
 
+			
 				echo '<ul class="widget-achievements-listing">';
+			
+			// auto adjust css height & margin for icon size
+			echo '<style type="text/css">';
+				echo '.widget-achievements-listing .has-thumb .widget-badgeos-item-title { margin-left: '.($icon_size + 10).'px;}';
+				echo '.widget-achievements-listing li.has-thumb { min-height: '.($icon_size + 5).'px;}';
+				echo '.badgeos-icon { position: relative; width: '.($icon_size+6).'px; height: '.($icon_size+6).'px; cursor:pointer; }';
+			echo '</style>';
+			
 				foreach ( $achievements as $achievement ) {
 
 					//exclude step CPT entries from displaying in the widget
@@ -72,26 +95,56 @@ class earned_user_achievements_widget extends WP_Widget {
 						$permalink = get_permalink( $achievement->ID );
 						$title = get_the_title( $achievement->ID );
 
+					$instances = count($achievement->instance);
+					
+					// format tooltip
+					$str = '';
+					if($instances == 2)
+						$str = __( '. Earned once before that.');
+					else
+					if($instances >= 3) 
+						$str = sprintf( __( '. Earned %d times before that.', 'badgeos' ), ($instances - 1));
+				
+					$tip = sprintf( __( 'Last earned on %s%s', 'badgeos' ), date_i18n(get_option('date_format'), $achievement->date_earned), $str);
+
+					// format image
 						$thumb = '';
-						$image_attr = wp_get_attachment_image_src( get_post_thumbnail_id( $achievement->ID ), array( 50, 50 ) );
+					if ( $show_icon )
+						$image_attr = wp_get_attachment_image_src( get_post_thumbnail_id( $achievement->ID ), array( $icon_size, $icon_size ) );
 
 						if ( $image_attr ) {
 
+						if($instances >= 1) 
+							$img = '<div class="badgeos-icon"><img class="wp-post-image" width="'. absint( $image_attr[1] ) .'" height="'. absint( $image_attr[2] ) .'" src="'. esc_url( $image_attr[0] ) .'"><span>'.$instances.'</span></div>';
+						else
 							$img = '<img class="wp-post-image" width="'. absint( $image_attr[1] ) .'" height="'. absint( $image_attr[2] ) .'" src="'. esc_url( $image_attr[0] ) .'">';
 							$thumb = '<a style="margin-top: -'. floor( absint( $image_attr[2] ) / 2 ) .'px;" class="badgeos-item-thumb" href="'. esc_url( $permalink ) .'">' . $img .'</a>';
 						}
+					else {
+						// use default image when one is not provided
+						if($instances >= 1) 
+							$img = '<div class="badgeos-icon"><img class="wp-post-image" width="'. absint( $icon_size ) .'" height="'. absint( $icon_size ) .'" src="' . plugins_url( 'badgeos/images/default-badge.png' ) .'"> <span>'.$instances.'</span></div>';
+						else
+							$img = '<img class="wp-post-image" width="'. absint( $icon_size ) .'" height="'. absint( $icon_size ) .'" src="' . plugins_url( 'badgeos/images/default-badge.png' ) .'">';
+						$thumb = '<a style="margin-top: -'. floor( absint( $icon_size) / 2 ) .'px;" class="badgeos-item-thumb" href="'. esc_url( $permalink ) .'">' . $img .'</a>';				
+					}
 
 						// is this achievement Credly giveable?
 						$giveable = credly_is_achievement_giveable( $achievement->ID );
 						$class = 'widget-badgeos-item-title';
-						$item_class = $image_attr ? ' has-thumb' : '';
+					$item_class = $img ? ' has-thumb' : '';
 						$item_class .= $giveable ? ' share-credly addCredly' : '';
 						$credly_ID = $giveable ? 'data-credlyid="'. absint( $achievement->ID ) .'"' : '';
 
 						echo '<li id="widget-achievements-listing-item-'. absint( $achievement->ID ) .'" '. $credly_ID .' class="widget-achievements-listing-item'. esc_attr( $item_class ) .'">';
+						echo '<span class="tip" data-powertip="'. $tip .'">';
 
+						if ( $show_icon )
 						echo $thumb;
+						if ( $show_text )
 						echo '<a class="widget-badgeos-item-title '. esc_attr( $class ) .'" href="'. esc_url( $permalink ) .'">'. esc_html( $title ) .'</a>';
+						echo '</span>';
+							
 						echo '</li>';
 
 						$thecount++;

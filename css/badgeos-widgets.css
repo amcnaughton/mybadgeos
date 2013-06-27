@@ -7,9 +7,6 @@
 	padding: 0 0 5px;
 	min-height: 25px;
 }
-.widget-achievements-listing li.has-thumb {
-	min-height: 55px;
-}
 .widget-achievements-listing .badgeos-item-thumb {
 	position: absolute;
 	top: 50%;
@@ -20,8 +17,31 @@
 }
 .widget-achievements-listing .has-thumb .widget-badgeos-item-title {
 	display: block;
-	text-indent: 60px;
 }
+/* numbered badge support */
+.badgeos-icon img{
+	vertical-align:middle;
+	display:block;
+}
+.badgeos-icon span{
+	display: block;
+	background:url(../images/icon_num.png) no-repeat left top;
+	height: 18px;
+	width: 18px;
+	position: absolute;
+	bottom: 0;
+	right: -3px;
+	text-align:center;
+	line-height:18px;
+	color:#000;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.badgeos-icon:hover span{
+	display:block;
+}
+
+/* Credly support */
 .share-credly {
 	position: relative;
 }

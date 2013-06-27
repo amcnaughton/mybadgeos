@@ -170,3 +170,17 @@ ul.badgeos-achievement-earners-list li {
 	padding: 3px 10px;
 	text-align: center;
 }
+
+.badgeos-congrats-popup-thumb {
+	margin-left:auto;
+	margin-right:auto;
+}
+.badgeos-congrats-popup-title {
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+.badgeos-congrats-popup-points {
+	font-weight: bold;
+	font-size: 0.8em;
+	padding-top: 10px;
+}

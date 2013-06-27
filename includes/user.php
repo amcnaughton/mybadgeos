@@ -25,6 +25,8 @@ function badgeos_get_user_achievements( $args = array() ) {
 		'achievement_id'   => false, // A specific achievement's post ID
 		'achievement_type' => false, // A specific achievement type
 		'since'            => 0,     // A specific timestamp to use in place of $limit_in_days
+		'sort_order'       => false, // Sort order: ASC = true, DESC = false
+		'merge'			   => false, // merge achievement of same type, add instance array		
 	);
 	$args = wp_parse_args( $args, $defaults );
 
@@ -44,6 +46,8 @@ function badgeos_get_user_achievements( $args = array() ) {
 
 	if ( is_array( $achievements) && ! empty( $achievements ) ) {
 		foreach ( $achievements as $key => $achievement ) {
+			// format timestamp for ease of debugging			
+			$achievements[$key]->date_formatted = date('m/d/Y', $achievement->date_earned);
 
 			// Drop any achievements earned before our since timestamp
 			if ( absint($args['since']) > $achievement->date_earned )
@@ -60,6 +64,35 @@ function badgeos_get_user_achievements( $args = array() ) {
 		}
 	}
 
+	// merge and create instance array if required
+	if ( $args['merge'] ) {
+		$achievements = badgeos_array_sort_by_key( $achievements, 'ID' );
+	
+		foreach ( $achievements as $key => $achievement ) {
+			if (empty($lastID) || $lastID != $achievement->ID) {	// first time or new achievment ID
+				$lastID = $achievement->ID;
+				$last_key = $key;
+			}
+			$achievements[$last_key]->instance[] = clone $achievement;	
+			
+			// remove duplicate achievement
+			if($last_key != $key)
+			unset($achievements[$key]);
+		}
+		$achievements = array_values( $achievements );
+		
+		// lets sort the merged array by date
+		// by now each element has an instance array with one or more entries
+		foreach ( $achievements as $key => $achievement ) {
+			$achievements[$key]->instance = array_values(badgeos_array_sort_by_key( $achievement->instance, 'date_earned', $args['sort_order'] ));
+			$achievements[$key]->date_earned = $achievements[$key]->instance[0]->date_earned;
+			$achievements[$key]->date_formatted = $achievements[$key]->instance[0]->date_formatted;			
+		}	
+	} 
+	
+	// sort by specified date order
+	$achievements = badgeos_array_sort_by_key( $achievements, 'date_earned', $args['sort_order'] );
+		
 	// Return our $achievements array_values (so our array keys start back at 0), or an empty array
 	return array_values( $achievements );
 
@@ -172,6 +205,9 @@ function badgeos_update_users_points( $user_id = 0, $new_points = 0, $admin_id =
 	// Maybe award some points-based badges
 	foreach ( badgeos_get_points_based_achievements() as $achievement )
 		badgeos_maybe_award_achievement_to_user( $achievement->ID );
+
+	// call action
+ 	do_action('badgeos_add_points', $user_id, $achievement_id, $new_points);
 
 	return $updated_points_total;
 }
