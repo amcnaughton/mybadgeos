@@ -334,6 +334,10 @@ function badgeos_save_submission_data() {
 
 	// Nonce check for security
 	check_admin_referer( 'badgeos_submission_form', 'submit_submission' );
+	
+// TR: begin, prevent saving the same form submission contents twice
+	unset($_POST['badgeos_submission_submit'] );
+// TR: end
 
 	// Publish the submission
 	return badgeos_create_submission(
@@ -736,10 +740,14 @@ function badgeos_get_submission_form( $args = array() ) {
 	$sub_form = '<form class="badgeos-submission-form" method="post" enctype="multipart/form-data">';
 		// submission form heading
 		$sub_form .= '<legend>'. $args['heading'] .'</legend>';
-		// submission file upload
-		$sub_form .= '<fieldset class="badgeos-file-submission">';
-		$sub_form .= '<p><label>'. $args['attachment'] .' <input type="file" name="document_file" id="document_file" /></label></p>';
-		$sub_form .= '</fieldset>';
+// TR: begin
+		if($args['attachments']) {
+			// submission file upload
+			$sub_form .= '<fieldset class="badgeos-file-submission">';
+			$sub_form .= '<p><label>'. $args['attachment'] .' <input type="file" name="document_file" id="document_file" /></label></p>';
+			$sub_form .= '</fieldset>';
+		}
+// TR: end
 		// submission comment
 		$sub_form .= '<fieldset class="badgeos-submission-comment">';
 		$sub_form .= '<p><textarea name="badgeos_submission_content"></textarea></p>';

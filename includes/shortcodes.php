@@ -194,23 +194,34 @@ function badgeos_submission_form( $atts = array() ) {
 
 	// Parse our attributes
 	$atts = shortcode_atts( array(
-		'achievement_id' => $post->ID
+		'achievement_id' => $post->ID,
+// TR: begin
+		'form_only' => false,
+		'attachments' => false
+// TR: end
+					
 	), $atts );
-
+	
 	// Verify user is logged in to view any submission data
 	if ( is_user_logged_in() ) {
-
+	
 		if ( badgeos_save_submission_data() )
 			printf( '<p>%s</p>', __( 'Submission saved successfully.', 'badgeos' ) );
-
-		// Return either the user's submission or the submission form
-		if ( badgeos_check_if_user_has_submission( $user_ID, $atts['achievement_id'] ) )
-			return badgeos_get_user_submissions( '', $atts['achievement_id'] );
-		else 
-// TR: begin
-			if(! badgeos_achievement_user_exceeded_max_earnings( $user_ID, $atts['achievement_id'] ))
-				return badgeos_get_submission_form( array( 'user_id' => $user_ID, 'achievement_id' => $atts['achievement_id'] ) );
+		
+// TR: begin	
+		// display submission form if ok
+		if (! badgeos_achievement_user_exceeded_max_earnings( $user_ID, $atts['achievement_id'] )) {	
+			$output = badgeos_get_submission_form( array( 'user_id' => $user_ID, 'achievement_id' => $atts['achievement_id'], 'attachments' => $atts['attachments'] )  );
+		}
+		
+		// check if user already has a submission for this achievement type
+		if ( !$form_only && badgeos_check_if_user_has_submission( $user_ID, $atts['achievement_id']) ) {
+// 			$output .= badgeos_get_user_submissions($user_ID, $atts['achievement_id']);
+		
+		}
+		return $output;	
 // TR: end
+
 	} else {
 
 		return '<p><i>' . __( 'You must be logged in to post a submission.', 'badgeos' ) . '</i></p>';
