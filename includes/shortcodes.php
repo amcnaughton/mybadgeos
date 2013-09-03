@@ -10,6 +10,18 @@
  */
 
 /**
+ * TR: begin
+ * Provide Team Rocket names for BadgeOS shortcodes
+ */
+add_shortcode( 'achievements_list', 'badgeos_achievements_list_shortcode' );
+add_shortcode( 'achievement', 'badgeos_achievement_shortcode' );
+add_shortcode( 'nomination', 'badgeos_nomination_form' );
+add_shortcode( 'submission', 'badgeos_submission_form' );
+add_shortcode( 'submissions', 'badgeos_display_submissions' );
+add_shortcode( 'nominations', 'badgeos_display_nominations' );
+// TR: end
+
+/**
  * Master Achievement List Short Code
  *
  * @since 1.0.0

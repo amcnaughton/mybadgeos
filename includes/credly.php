@@ -65,7 +65,9 @@ class BadgeOS_Credly {
         add_action( 'wp_ajax_search_credly_categories', array( $this, 'credly_category_search' ) );
 
         // Credly enable user meta setting
-        add_action( 'personal_options', array( $this, 'credly_profile_setting' ), 99 );
+// TR: begin
+        //add_action( 'personal_options', array( $this, 'credly_profile_setting' ), 99 );
+// TR: end
         add_action( 'personal_options_update', array( $this, 'credly_profile_setting_save' ) );
         add_action( 'init', array( $this, 'credly_profile_setting_force_enable' ), 999 );
 
