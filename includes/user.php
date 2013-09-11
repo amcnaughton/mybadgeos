@@ -37,16 +37,20 @@ function badgeos_get_user_achievements( $args = array() ) {
 
 	// Grab the user's current achievements
 	$achievements = ( $earned_items = get_user_meta( absint( $args['user_id'] ), '_badgeos_achievements', true ) ) ? $earned_items : array( $args['site_id'] => array() );
-
+	
 	// If we want all sites (or no specific site), return the full array
 	if ( empty( $args['site_id']) || 'all' == $args['site_id'] )
 		return $achievements;
 
 	// Otherwise, we only want the specific site's achievements
 	$achievements = $achievements[$args['site_id']];
-
+	
 	if ( is_array( $achievements) && ! empty( $achievements ) ) {
 		foreach ( $achievements as $key => $achievement ) {
+			// scrub for any data issues
+			if(!is_numeric($achievement->ID))
+				unset($achievements[$key]);
+				
 			// format timestamp for ease of debugging			
 			$achievements[$key]->date_formatted = date('m/d/Y', $achievement->date_earned);
 

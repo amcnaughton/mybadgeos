@@ -1,5 +1,7 @@
 #icon-badgeos_badgeos {
-	background-image: url('../images/badgeos_screen_icon.png');
+	/* TR: background-image: url('../images/badgeos_screen_icon.png'); */
+	background-image: url('../images/trophy_screen_icon.png');
+	
 }
 
 /* For the Triggers UI */

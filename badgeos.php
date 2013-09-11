@@ -196,8 +196,9 @@ class BadgeOS {
 		$minimum_role = ( !empty( $badgeos_settings['minimum_role'] ) ) ? $badgeos_settings['minimum_role'] : 'administrator';
 
 		// Create main menu
-		add_menu_page( 'BadgeOS', 'BadgeOS', $minimum_role, 'badgeos_badgeos', 'badgeos_settings', $this->directory_url . 'images/badgeos_icon.png' );
-
+// 	TR;	add_menu_page( 'BadgeOS', 'BadgeOS', $minimum_role, 'badgeos_badgeos', 'badgeos_settings', $this->directory_url . 'images/badgeos_icon.png' );
+		add_menu_page( 'BadgeOS', 'BadgeOS', $minimum_role, 'badgeos_badgeos', 'badgeos_settings', $this->directory_url . 'images/trophy_icon.png' );
+		
 		// Create submenu items
 		add_submenu_page( 'badgeos_badgeos', 'BadgeOS Settings', 'Settings', $minimum_role, 'badgeos_settings', 'badgeos_settings_page' );
 		add_submenu_page( 'badgeos_badgeos', 'Credly Integration', 'Credly Integration', $minimum_role, 'badgeos_sub_credly_integration', 'badgeos_credly_options_page' );
