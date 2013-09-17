@@ -83,7 +83,8 @@ class BadgeOS_Credly {
      * @return string      Admin notice if API key is empty
      */
     public function credly_admin_notice() {
-
+// TR:
+return;
         $credly_settings = get_option( 'credly_settings' );
 
         //check if Credly is enabled and if an API key exists
