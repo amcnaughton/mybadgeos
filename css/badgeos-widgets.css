@@ -30,7 +30,8 @@
 	width: 18px;
 	position: absolute;
 	bottom: 0;
-	right: -3px;
+	right: 38px;
+	top: 3px;
 	text-align:center;
 	line-height:18px;
 	color:#000;
