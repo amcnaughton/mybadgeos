@@ -54,6 +54,12 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 				'id'   => $prefix . 'upload_badge_image_achievement',
 				'type' => 'text_only',
 			),
+			array(
+					'name'    => __( 'Hidden Type?', 'badgeos' ),		// TR: 
+					'desc' 	 => ' '.__( 'Yes, hide this achievement type from the frontend.', 'badgeos' ),
+					'id'      => $prefix . 'hidden_type',
+					'type'	 => 'checkbox',
+			),
 		)
 	);
 

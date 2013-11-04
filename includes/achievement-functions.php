@@ -294,7 +294,6 @@ function badgeos_build_achievement_object( $achievement_id = 0 ) {
 
 	// Return our achievement object, available filter so we can extend it elsewhere
 	return apply_filters( 'achievement_object', $achievement_object );
-
 }
 
 /**

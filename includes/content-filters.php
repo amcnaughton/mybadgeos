@@ -412,6 +412,9 @@ add_filter( 'badgeos_step_title_display', 'badgeos_step_link_title_to_achievemen
  */
 function badgeos_achievement_points_markup( $achievement_id = 0 ) {
 
+	// TR: hide points value as it can be personalized for each contest
+	return;
+	
 	// Grab the current post ID if no achievement_id was specified
 	if ( ! $achievement_id ) {
 		global $post;

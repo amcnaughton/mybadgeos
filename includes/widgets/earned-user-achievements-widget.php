@@ -105,7 +105,7 @@ class earned_user_achievements_widget extends WP_Widget {
 					if($instances >= 3) 
 						$str = sprintf( __( '. Earned %d times before that.', 'badgeos' ), ($instances - 1));
 				
-					$tip = sprintf( __( 'Last earned on %s%s', 'badgeos' ), date_i18n(get_option('date_format'), $achievement->date_earned), $str);
+					$tip = sprintf( __( '%s: Last earned on %s%s', 'badgeos' ), $title, date_i18n(get_option('date_format'), $achievement->date_earned), $str);
 
 					// format image
 						$thumb = '';

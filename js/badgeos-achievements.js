@@ -137,7 +137,8 @@ jQuery(document).ready(function($){
 
 // TR: begin
 	$('.tip').powerTip({
-		smartPlacement: 'true'
+		smartPlacement: 'true',
+		closeDelay: 300
 	});
 // TR: end
 
