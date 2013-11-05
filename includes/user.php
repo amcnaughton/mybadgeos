@@ -229,10 +229,9 @@ function badgeos_update_users_points( $user_id = 0, $new_points = 0, $admin_id =
  * @return integer                 The user's updated points total
  */
 function badgeos_award_user_points( $user_id, $achievement_id ) {
-// TR:
-	pr("POINTS = $points");
-	
+// TR:	
 	$points = teamos_get_achievement_points($user_id, $achievement_id);
+	
 	// Grab our points from the provided post
 // 	$points = absint( get_post_meta( $achievement_id, '_badgeos_points', true ) );
 
