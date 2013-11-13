@@ -72,8 +72,7 @@ class earned_user_achievements_widget extends WP_Widget {
 			$icon_size = absint( $instance['icon_size'] );
 
 				$thecount = 0;
-			wp_enqueue_style ( 'badgeos-tooltip-css' );
-			wp_enqueue_script( 'badgeos-tooltip-script' );
+	
 				wp_enqueue_script( 'badgeos-achievements' );
 				wp_enqueue_style( 'badgeos-widget' );
 
@@ -137,13 +136,15 @@ class earned_user_achievements_widget extends WP_Widget {
 						$credly_ID = $giveable ? 'data-credlyid="'. absint( $achievement->ID ) .'"' : '';
 
 						echo '<li id="widget-achievements-listing-item-'. absint( $achievement->ID ) .'" '. $credly_ID .' class="widget-achievements-listing-item'. esc_attr( $item_class ) .'">';
-						echo '<span class="tip" data-powertip="'. $tip .'">';
-
-						if ( $show_icon )
-						echo $thumb;
-						if ( $show_text )
-						echo '<a class="widget-badgeos-item-title '. esc_attr( $class ) .'" href="'. esc_url( $permalink ) .'">'. esc_html( $title ) .'</a>';
-						echo '</span>';
+	
+							if ( $show_icon ) {
+								echo '<span class="tooltip-left" title="'. $tip .'">';
+									echo $thumb;		
+								echo '</span>';
+							}
+							
+							if ( $show_text )
+							echo '<a class="widget-badgeos-item-title '. esc_attr( $class ) .'" href="'. esc_url( $permalink ) .'">'. esc_html( $title ) .'</a>';
 							
 						echo '</li>';
 

@@ -136,10 +136,29 @@ jQuery(document).ready(function($){
 	});
 
 // TR: begin
-	$('.tip').powerTip({
-		smartPlacement: 'true',
-		closeDelay: 1500
-	});
+	  $(function() {
+//	    $( document ).tooltip();
+	    $('.tooltip-left').qtip({
+	    	    style: {
+	    	        classes: 'qtip-bootstrap qtip-shadow qtip-rounded',
+	    	    },
+	    	    position: {
+	    	        my: 'top right',  // Position my 
+	    	        at: 'bottom center', // at the 
+	    	    }
+	    });
+	  
+	    $('.tooltip-right').qtip({
+    	    style: {
+    	        classes: 'qtip-bootstrap qtip-shadow qtip-rounded',
+    	    },
+    	    position: {
+    	        my: 'top center',  // Position my 
+    	        at: 'bottom center', // at the 
+    	    }
+    });
+  });
+	  
 // TR: end
 
 	// Credly popup functionality
