@@ -99,7 +99,7 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 					) )
 			),
 			array(
-				'name' => __( 'Minimum Points Requried', 'badgeos' ),
+				'name' => __( 'Minimum Points Required', 'badgeos' ),
 				'desc' => ' '.__( 'Fewest number of points required for earning this achievement.', 'badgeos' ),
 				'id'   => $prefix . 'points_required',
 				'type' => 'text_small',
@@ -121,6 +121,17 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 				'desc' => __( 'Displayed after achievement is earned.', 'badgeos' ),
 				'id'   => $prefix . 'congratulations_text',
 				'type' => 'textarea',
+			),
+			array(
+					'name'    => __( 'Notification Type', 'badgeos' ),
+					'desc'    => __( 'How should the notification be presented?', 'badgeos' ),
+					'id'      => $prefix . 'notification_type',
+					'type'    => 'select',
+					'options' => array(
+							array( 'name' => 'Standard (upper right, fades away)',    	'value' => 'standard' ),
+							array( 'name' => 'Fancy (middle of screen dialog box)',   	'value' => 'popup' ),
+							array( 'name' => 'None (silent)',   						'value' => 'none' ),
+					)
 			),
 			array(
 				'name' => __( 'Maximum Earnings', 'badgeos' ),
