@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
 				'feedback_type' :  button.siblings('input[name=feedback_type]').val(),
 				'achievement_id' : button.siblings('input[name=achievement_id]').val(),
 				'user_id' :        button.siblings('input[name=user_id]').val(),
-				'nonce' :          button.siblings('input[name=badgeos_feedback_review]').val(),
+				'nonce' :          button.siblings('input[name=badgeos_feedback_review]').val()
 			},
 			dataType: 'json',
 			success: function( response ) {
@@ -140,21 +140,21 @@ jQuery(document).ready(function($){
 //	    $( document ).tooltip();
 	    $('.tooltip-left').qtip({
 	    	    style: {
-	    	        classes: 'qtip-bootstrap qtip-shadow qtip-rounded',
+	    	        classes: 'qtip-bootstrap qtip-shadow qtip-rounded'
 	    	    },
 	    	    position: {
 	    	        my: 'top right',  // Position my 
-	    	        at: 'bottom center', // at the 
+	    	        at: 'bottom center' // at the 
 	    	    }
 	    });
 	  
 	    $('.tooltip-right').qtip({
     	    style: {
-    	        classes: 'qtip-bootstrap qtip-shadow qtip-rounded',
+    	        classes: 'qtip-bootstrap qtip-shadow qtip-rounded'
     	    },
     	    position: {
     	        my: 'top center',  // Position my 
-    	        at: 'bottom center', // at the 
+    	        at: 'bottom center' // at the 
     	    }
     });
   });
