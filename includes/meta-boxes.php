@@ -92,6 +92,8 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 				'options' => apply_filters( 'badgeos_achievement_earned_by', array(
 						array( 'name' => 'Completing Steps',           'value' => 'triggers' ),
 						array( 'name' => 'Minimum Number of Points',   'value' => 'points' ),
+						array( 'name' => 'Minimum Number of Points by Course',   'value' => 'course_points' ),
+						
 						array( 'name' => 'Submission (Reviewed)',      'value' => 'submission' ),
 						array( 'name' => 'Submission (Auto-accepted)', 'value' => 'submission_auto' ),
 						array( 'name' => 'Nomination',                 'value' => 'nomination' ),
@@ -103,6 +105,13 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 				'desc' => ' '.__( 'Fewest number of points required for earning this achievement.', 'badgeos' ),
 				'id'   => $prefix . 'points_required',
 				'type' => 'text_small',
+			),
+			array(
+			    'name' => __( 'Selected Course', 'badgeos' ),
+			    'desc' => ' '.__( 'Points must come from this course.', 'badgeos' ),
+			    'id'   => $prefix . 'selected_course',
+			    'type' => 'select',
+			    'options' => teamos_courses_cmb_select()
 			),
 			array(
 				'name' => __( 'Sequential Steps', 'badgeos' ),

@@ -475,7 +475,7 @@ function badgeos_get_points_based_achievements() {
 			       $wpdb->postmeta as meta
 			WHERE  posts.ID = meta.post_id
 			       AND meta.meta_key = '_badgeos_earned_by'
-			       AND meta.meta_value = 'points'
+			       AND (meta.meta_value = 'points' || meta.meta_value = 'course_points')
 			"
 		);
 
@@ -510,6 +510,17 @@ function badgeos_bust_points_based_achievements_cache( $post_id ) {
 		)
 	) {
 		delete_transient( 'badgeos_points_based_achievements' );
+	}
+	
+	if (
+    	current_user_can( $minimum_role )
+    	&& in_array( $post->post_type, badgeos_get_achievement_types_slugs() )
+    	&& (
+    	    'course_points' == get_post_meta( $post_id, '_badgeos_earned_by', true )
+    	    || ( isset( $_POST['_badgeos_earned_by'] ) && 'course_points' == $_POST['_badgeos_earned_by'] )
+	)
+	) {
+	    delete_transient( 'badgeos_points_based_achievements' );
 	}
 
 }
