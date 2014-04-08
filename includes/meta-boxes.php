@@ -16,6 +16,16 @@
  * @param  array  $meta_boxes The existing metabox array we're filtering
  * @return array              An updated array containing our new metaboxes
  */
+
+function proxy_teamos_courses_cmb_select() {
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+    if(!is_plugin_active('teamrocket-badgeos-add-on/teamrocket-badgeos.php')) 
+        return null;
+    else    
+        return teamos_courses_cmb_select();
+}
+   
 function badgeos_custom_metaboxes( array $meta_boxes ) {
 
 	// Start with an underscore to hide fields from custom fields list
@@ -111,7 +121,7 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 			    'desc' => ' '.__( 'Points must come from this course.', 'badgeos' ),
 			    'id'   => $prefix . 'selected_course',
 			    'type' => 'select',
-			    'options' => teamos_courses_cmb_select()
+			    'options' => proxy_teamos_courses_cmb_select()
 			),
 			array(
 				'name' => __( 'Sequential Steps', 'badgeos' ),
