@@ -1,20 +1,20 @@
 === BadgeOS ===
-Contributors: credly, webdevstudios, williamsba1, rzen, jtsternberg, ryanduff, Messenlehner, LisaSabinWilson, tw2113
+Contributors: badgeos, learningtimes, webdevstudios, williamsba1, rzen, jtsternberg, ryanduff, Messenlehner, LisaSabinWilson, tw2113
 Donate link: http://badgeos.org/contribute/donate/
-Tags: badge, badges, openbadges, credly, OBI, mozilla, open badges, achievement, award, reward, engagement, submission, nomination, API, open credit, credit
+Tags: badge, badges, openbadges, learningtimes, credly, OBI, mozilla, open badges, achievement, award, reward, engagement, submission, nomination, API, open credit, credit
 Requires at least: 3.5
-Tested up to: 3.5.1
-Stable tag: 1.1.0
+Tested up to: 3.8.1
+Stable tag: 1.3.5
 License: GNU AGPLv3
 License URI: http://www.gnu.org/licenses/agpl-3.0.html
 
-Easily create badges and set up the steps and achievements users complete to earn them. Badges are Mozilla OBI compatible and sharable via Credly.
+BadgeOS turns your site into an achievement and badging system. Easily create badges and set up the steps and achievements users complete to earn them.
 
 == Description ==
 
-[BadgeOS](http://badgeos.org "BadgeOS")&trade; turns your WordPress site into an achievement and badging system. Your site's users complete steps, demonstrate skills and knowledge, and earn digital badges. Easily define the achievements, organize the badge requirements any way you like, and choose from and combine a range of assessment options to determine whether each task or requirement has been achieved.
+[BadgeOS](http://badgeos.org "BadgeOS")&trade; turns your WordPress site into an achievement and badging system. Your site's users complete steps, demonstrate skills and knowledge, and earn digital badges. Easily define the achievements, organize the badge requirements any way you like,c and choose from and combine a range of assessment options to determine whether each task or requirement has been achieved.
 
-Create badges and set up the achievements to earn them. Badges are Mozilla OBI compatible and sharable via [Credly](https://credly.com/ "Credly.com"), the free web service for recognizing and displaying lifelong achievement.
+Create badges and set up the achievements to earn them. Badges are Mozilla OBI compatible and sharable via [Credly](https://credly.com/ "Credly.com"), the free web service for managing and displaying lifelong credentials.
 
 BadgeOS is extremely powerful and infinitely extensible. Check out some of the out-of-the-box features:
 
@@ -30,13 +30,28 @@ BadgeOS is extremely powerful and infinitely extensible. Check out some of the o
 *   Point thresholds
 *   Admin Given Badges
 *   Community Activity (with the powerful [BadgeOS Community Add-on](http://wordpress.org/extend/plugins/badgeos-community-add-on/ "BadgeOS Community Add-on"))
+*   Activity from other popular WordPress plugins. See growing catalog of [BadgeOS Add-ons](http://badgeos.org/add-ons/ "BadgeOS Add-ons").
+
 
 **Define an Unlimited Number of Achievement Types**
 
 *   Create as many types of achievement as you like
 *   Name achievement types whatever you wish
 *   Easily define how they relate to one another using the 'Required Steps' tool
-*   Set default images for each achievement type or select unique images for every achievement item.
+*   Set default images for each achievement type or select unique images for every achievement item
+
+
+**Design Beautiful Badge and Achievement Images from within WordPress**
+
+*   Use the integrated Credly "[Badge Builder](https://credly.com/badge-builder-home "Credly tool for designing badge images")" to create professional looking badge images right from within WordPress
+*   Launch the Badge Builder from any achievement or achievement type editing screen in WordPress admin
+*   Choose from a variety of badge shapes and border styles
+*   Select from a library of thousands of Noun Project icons, or upload your own to the center of any badge
+*   Add or remove a banner with text to your badge
+*   Full color palette selection for border, fill, icon and banner
+*   Saves automatically to your WordPress Media Library for easy re-use for other achievements or anywhere else on your site
+*   Edit previously created badge and achievement images and save new versions to your Media Library
+*   Simply enter your Credly credentials in the "Credly Integration" settings menu in BadgeOS to enable the Badge Builder. If you don't have a [Credly](https://credly.com/ "Credly lets you create and manage lifelong achievements") account, [create](https://credly.com/#!/create-account "Create a free Credly account") one for free.
 
 
 **Sharable Badges with Credly Integration**
@@ -52,13 +67,15 @@ BadgeOS is extremely powerful and infinitely extensible. Check out some of the o
 
 *   Simple yet powerful admin interface for defining the "Required Steps" for any badge or achievement.
 *   Easily link together one or more triggers, steps or actions into the conditions needed to earn a badge or mark an achievement.
-*   Extend the Required Steps options using the free [BadgeOS Community Add-on](http://wordpress.org/extend/plugins/badgeos-community-add-on/ "BadgeOS Community Add-on")
+*   Extend the Required Steps options using the free [BadgeOS Community Add-on](http://wordpress.org/extend/plugins/badgeos-community-add-on/ "BadgeOS Community Add-on").
+*   Also extend Required Steps with other [BadgeOS Add-ons](http://badgeos.org/add-ons "BadgeOS Add-ons").
 
 
 **Reward User Progress**
 
 *   Issue badges for any combination of achievements
-*   Award points for commenting, logging in, making submissions, completing tasks
+*   Award points for commenting, logging in, making submissions, completing any combination of tasks
+*   Display a congratulatory message, customizable per Achievement, on each achievement page.
 
 
 **View and Issue your BadgeOS badges via iOS Mobile App**
@@ -69,9 +86,10 @@ BadgeOS is extremely powerful and infinitely extensible. Check out some of the o
 *   Credly app's "ID Card" view essentially turns a BadgeOS badge into an "access pass" for face-to-face activities.
 
 
-**Earned Badges Widget**
+**Earned Achievements Widget**
 
 * Shows logged in users what badges they have earned.
+* Option to choose which specific achievement types to display in the widget.
 * Set the parameters for the widget to decide how many recent badges to display.
 * Option to show logged in users total points they have earned (if you are using BadgeOS points mechanism).
 * Members can share their badges right from the widget to their Credly profile and off to their linked social networks or Mozilla Backpack.
@@ -82,10 +100,12 @@ BadgeOS is extremely powerful and infinitely extensible. Check out some of the o
 * BadgeOS works with just about any standard WordPress theme.
 * No special hooks or theme updates are needed.
 * Turn any page or post into a way to display available achievements and for users to track their progress.
-* Multiple options and parameters for each shortcode for great flexibility.
+* Multiple options and parameters for each for great flexibility.
 * Shortcodes to bring submission and nomination review to the front-end of your site.
-* Just activate BadgeOS and place the simple shortcode on any page or post.
-* And you've got an engagement management system running on your WordPress site!
+* Shortcode to integrate specific available achievements into any post or page of your site.
+* Shortcode for Credly "[Custom Assertion Location](http://blog.credly.com/custom-assertion-location/ "Credly Custom Redirection")" for displaying badges issued by Credly Pro users on your site
+* [Shortcode documentation](http://badgeos.org/support/shortcodes/ "BadgeOS Shortcodes") in the plugin menu and on BadgeOS.org.
+* Just activate BadgeOS and place simple shortcodes on any page or post, and you've got an engagement management system running on your WordPress site!
 
 
 **Submission and Nomination Review**
@@ -93,6 +113,7 @@ BadgeOS is extremely powerful and infinitely extensible. Check out some of the o
 * Easily review submissions and nominations from members.
 * Approve or deny submissions with one click.
 * Shortcodes with multiple options for review of submissions on any page or post on your site.
+* Powerful shortcodes to add an achievement submission or nominiation form to any post or page.
 * Add comments to engage the member and elaborate on your decisions.
 * Optional notification emails inform you when people on your site have made submissions or nominated peers.
 
@@ -101,26 +122,35 @@ BadgeOS is extremely powerful and infinitely extensible. Check out some of the o
 
 
 * BadgeOS is designed to be a true operating system for turning any WordPress site into an engagement management application.
+* BadgeOS offers a growing catalog of [Add-ons](http://badgeos.org/add-ons/ "BadgeOS Add-ons") to the plugin that enhance core functionality with specialized functions.
 * Built with expandability in mind to allow virtually anything to trigger and recognize achievement.
-* BadgeOS plans to continue to release a range of [Add-ons](http://badgeos.org/download/add-ons/ "BadgeOS Add-ons") to the plugin that enhance core functionality with specialized functions.
-* Check out some of the [BadgeOS customizations](http://badgeos.org/services/badgeos-customization/ "We'll help you customize your BadgeOS site") we've already implemented to get a sense for what you might expect.
+* Check out some of the [BadgeOS customizations](http://badgeos.org/services/badgeos-customization/ "We'll help you customize your BadgeOS site") we've already implemented to get a sense for what is possible with BadgeOS.
+* [Developer Documentation and APIs](http://badgeos.org/developers/ "BadgeOS Developer Resources") are freely available.  [Share your own BadgeOS add-ons](http://badgeos.org/developers/share "Share Your BadgeOS Add-Ons") with the community today.
 
 
 = Stay Connected / Helpful Links =
 
-BadgeOS is made available by [Credly, LLC](https://credly.com/ "Credly web site"). Here are some ways to stay connected and to see what else we are up to:
+BadgeOS is made available by [LearningTimes, LLC](http://www.learningtimes.com/ "LearningTimes web site"). Here are some ways to stay connected and to see what else we are up to:
 
 * [BadgeOS.org](http://badgeos.org/ "BadgeOS web site") - Contact Us, Video Tutorials, Examples, News
-* [Credly.com](https://credly.com/ "Credly web site") - Recognize, manage and share lifelong achievement
+* [LearningTimes](http://www.learningtimes.com "LearningTimes web site") - Online learning programs, development and expertise
+* [Credly.com](https://credly.com/ "Credly web site") - Manage lifelong credentials that matter
+* [BadgeOS Developer Resources](http://badgeos.org/developers "BadgeOS Developer Docs and APIs") - Open documentation, APIs and resources for BadgeOS developers.
 * [Credly Knowledgebase](http://support.credly.com/ "Credly FAQ and Support") - Credly FAQ
-* [Facebook](https://www.facebook.com/Credly "Credly on Facebook") - Credly on Facebook
-* [Twitter](https://twitter.com/credly "Credly on Facebook") - Credly Tweets
+* [Facebook](https://www.facebook.com/Credly "Credly on Facebook") - BadgeOS and Credly on Facebook
+* [Twitter](https://twitter.com/credly "Credly on Facebook") - BadgeOS and Credly Tweets
 * [E-Mailing List](http://badgeos.org/join-list/ "BadgeOS Occasional Mailing List - No spam!") - Occasional updates via e-mail
 * [GitHub](https://github.com/opencredit/badgeos "BadgeOS on GitHub") - Report issues, contribute code
 
+= Developer Documentation: =
+
+BadgeOS is built with expandability in mind to allow virtually anything to trigger and recognize achievement. The [Developer Resources](http://badgeos.org/developers/ "BadgeOS Developers") area of the BadgeOS site provides links to documentation, APIs and guides to extending BadgeOS and integrating it with other plugins and systems.  [Share](http://badgeos.org/developers/share/ "Share Yoru Plugins and Add-Ons") your BadgeOS Add-Ons and BadgeOS-compatible plugins.
+
+Want to contribute to BadgeOS core? That's great! Visit our [GitHub site for the project at](https://github.com/opencredit/badgeos/tree/master#contributing "BadgeOS on GitHub").
+
 = License Info =
 
-Credly, LLC licenses BadgeOS to you under the terms of the GNU Affero General Public License, version 3, as published by the Free Software Foundation.
+LearningTimes, LLC licenses BadgeOS to you under the terms of the GNU Affero General Public License, version 3, as published by the Free Software Foundation.
 
 There is NO WARRANTY for this software, express or implied, including the implied warranties of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License, version 3, at [http://www.gnu.org/licenses/agpl-3.0.html](http://www.gnu.org/licenses/agpl-3.0.html "License") for more details.
 
@@ -130,7 +160,7 @@ There is NO WARRANTY for this software, express or implied, including the implie
 1. Upload 'badgeos' to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Visit the BadgeOS menu to add Badges and set up new Achievement Types.
-4. Enter Credly credentials for the badge Issuer in the Credly Integration settings to enable badge sharing. (First get free account at Credly.com if you do not have one.)
+4. Enter Credly credentials for the badge Issuer in the Credly Integration settings to enable the free Credly Badge Builder and badge sharing. (First get a [free account](https://credly.com/#!/create-account "Create a free Credly account") at Credly.com if you do not have one.)
 5. Visit the Help/Support section of the BadgeOS menu for shortcodes to turn any page or post on your site into a BadgeOS list of available achievements and badges.
 
 
@@ -139,7 +169,7 @@ There is NO WARRANTY for this software, express or implied, including the implie
 
 = Any ideas for making badge images? =
 
-Yes! You can start at [Credly.com](https://credly.com/ "Badge Builder Tool") and use the badge builder there to create beautiful looking badges.
+Yes! After installing BadgeOS, enable Credly Integration in the BadgeOS menu. That will seamlessly integrate the Credly "[Badge Builder](https://credly.com/badge-builder-home "Credly tool for designing badge images")" into your WordPress site so you can design your own professional-looking badge images.  (First get a [free account](https://credly.com/#!/create-account "Create a free Credly account") at Credly.com if you do not have one.)
 
 = Can you help us design custom badge images? =
 
@@ -172,18 +202,88 @@ Thanks for asking!  Please do share back code modifications or enhancements you 
 
 3. Earned badges on your BadgeOS site are "Open Badges" that are sharable via Credly to virtually any social network, site, blog or the Mozilla Backpack.
 
-4. BadgeOS gives you a simple yet powerful admin interface for defining the "Required Steps" for any badge or achievement.
+4. Use the integrated Credly Badge Builder to easily create beautiful badge images right from within WordPress. Launch the Badge Builder from any achievement or achievement type editing screen.
 
-5. BadgeOS shortcodes make it easy to turn any WordPress page into an achievements page, regardless of the theme you are using.
+5. Choose from a variety of badge shapes and border styles, and adjust the colors of each element.
+
+6. Select from a library of thousands of Noun Project icons, or upload your own to the center of any badge.
+
+7. BadgeOS gives you a simple yet powerful admin interface for defining the "Required Steps" for any badge or achievement.
+
+8. BadgeOS shortcodes make it easy to turn any WordPress page into an achievements page, regardless of the theme you are using.
 
 
 == Changelog ==
 
+= 1.3.5 =
+* Fixed: Eliminated an error when attempting to use Credly Badge Builder over SSL
+* Fixed: Eliminated some PHP warnings
+
+= 1.3.4 =
+* Updated: Upgraded bundled CMB library to 1.0.8.
+* Updated: Upgraded bundled posts-to-posts library to 1.6.3-alpha.
+* Updated: Corrected several outdated PHPDoc comments.
+* Updated: Added quotes to all shortcode examples for clarity.
+* Fixed: Properly award "all achievements of type" step trigger when triggered.
+* Fixed: Prevent awarding a user's triggered triggers to current admin.
+* Fixed: Prevent awarding a user's triggered triggers on the incorrect site (in multisite).
+* Fixed: Prevent users from incorrectly resubmitting earned achievements to Credly.
+* Fixed: Pass explicit user ID on "send to credly" AJAX calls.
+* Fixed: Minor CSS tweaks to BadgeOS user profile fields.
+
+= 1.3.3 =
+* Added: Spanish language translation.
+* Fixed: Eliminated a recursion issue with the badgeos_award_achievement action hook.
+* Fixed: Users can send new submissions if previous submisson was denied or approved (until they've reached the maximum earnings for the achievement).
+* Fixed: Corrected sort order on front-end step output.
+* Fixed: Updated Earned Achievements Widget handling for achievements with spaces and special characters.
+
+= 1.3.2 =
+* Fixed: Small issue with Credly Badge Builder API headers.
+
+= 1.3.1 =
+* Fixed: Achievement step stort order (in admin).
+* Fixed: Prevent duplicate stock achievement thumbnails per achievement type.
+* Fixed: Bug with Credly Badge Builder API connection.
+
+= 1.3.0 =
+* Added: Credly Badge Builder – Build your own unique badges directly from the post editor (requires Credly account).
+* Added: badgeos_is_achievement() to check if a given $post or $post_id is a BadgeOS achievement.
+* Added: New [credly_assertion_page] shortcode for Credly Pro users.
+* Added: Specify a custom message to include with Credly notification emails
+* Updated: badgeos_award_achievement_to_user() now checks that the passed $acheivement_id is a real achievement.
+* Updated: New achievements now have a default max earning of 1 (blank for infinite).
+* Updated: BadgeOS Help page now links to Github, instead of just mentioning it.
+* Updated: Detailed "Credly Sharing" options are only visible on the achievement editor when achievement is set to "send to credly".
+* Updated: "Featured Image" text now says "Achievement Image" when working with an achievement post.
+* Fixed: Added variable type check to badgeos_get_user_achievements() to prevent PHP warning.
+* Fixed: Earned achievements will no longer show "Send to Credly" when setting is disabled.
+
+= 1.2.0 =
+* Added: "Add-ons" menu now has a catalog of new plugins to extend BadgeOS in exciting ways.
+* Added: Introduced a suite of "user activity" functions for tracking a user's active achievements.
+* Updated: Add-Ons admin page now dynamically pulls all available add-ons directly from BadgeOS.org
+* Updated: Improved support for WP Multisite installations
+* Updated: Earned Achievements widget now sorts achievements with newest-earned first.
+* Updated: Earned Achievements widget now supports displaying all OR specific achievement types.
+* Updated: [badgeos_achievements_list] shortcode now supports multiple achievement types, using either type="all" or by separating the achievement names with a comma, like: type="badge,quest,level".
+* Updated: [badgeos_achievements_list] shortcode now supports "orderby" and "order" parameters so you can control how achievements are sorted.
+* Updated: BadgeOS Log Entry functions are now filterable and can be overridden (more on this in 1.3).
+* Updated: Added hooks to Help/Support page so add-ons can include their own content.
+* Updated: We now set a default thumbnail for new achievements and achievement types.
+* Updated: We now display a warning on the Achievement Type editor if a title exceeds 20 characters.
+* Updated: Removed some redundant checks in the rules-engine to make process more performant.
+* Updated: Relocated a few functions to make codebase easier to navigate.
+* Fixed: We now hide the container for an earned achievement's congratulations text if there is no congratulations text.
+* Fixed: The Earned Achievements widget and the Send to Credly functionality sanely fall-back to the parent achievement's thumbnail if the given achievement doesn't have one set.
+* Fixed: Eliminated a bug with the "Add Media" functionality due to a conflict with the Canvas theme by WooThemes.
+* Fixed: Cleared out many minor, but annoying, PHP warnings
+
 = 1.1.0 =
 * Added: New triggers for publishing new posts and pages
 * Added: [badgeos_achievement] shortcode to display a single achievement on any post/page, see BadgeOS Help/Support for parameter details
-* Added: [badgeos_submissions] shortcode to show a filterable/searchbale list of submissions, see BadgeOS Help/Support for parameter details
-* Added: [badgeos_nominations] shortcode to show a filterable/searchbale list of nominations, see BadgeOS Help/Support for parameter details
+* Added: [badgeos_submissions] shortcode to show a filterable/searchable list of submissions, see BadgeOS Help/Support for parameter details
+* Added: [badgeos_nominations] shortcode to show a filterable/searchable list of nominations, see BadgeOS Help/Support for parameter details
 * Added: New meta box showing attachments for a Submission in the admin dashboard
 * Added: Earned achievement message on an achievement single page which shows if a user has earned the achievement
 * Added: New widget to display the Credly Credit Issuer badge
@@ -224,6 +324,70 @@ Thanks for asking!  Please do share back code modifications or enhancements you 
 * BadgeOS says "hello world", earns "Hello World" badge.
 
 == Upgrade Notice ==
+
+= 1.3.5 =
+* Fixed: Eliminated an error when attempting to use Credly Badge Builder over SSL
+* Fixed: Eliminated some PHP warnings
+
+= 1.3.4 =
+* Updated: Upgraded bundled CMB library to 1.0.8.
+* Updated: Upgraded bundled posts-to-posts library to 1.6.3-alpha.
+* Updated: Corrected several outdated PHPDoc comments.
+* Updated: Added quotes to all shortcode examples for clarity.
+* Fixed: Properly award "all achievements of type" step trigger when triggered.
+* Fixed: Prevent awarding a user's triggered triggers to current admin.
+* Fixed: Prevent awarding a user's triggered triggers on the incorrect site (in multisite).
+* Fixed: Prevent users from incorrectly resubmitting earned achievements to Credly.
+* Fixed: Pass explicit user ID on "send to credly" AJAX calls.
+* Fixed: Minor CSS tweaks to BadgeOS user profile fields.
+
+= 1.3.3 =
+* Added: Spanish language translation.
+* Fixed: Eliminated a recursion issue with the badgeos_award_achievement action hook.
+* Fixed: Users can send new submissions if previous submisson was denied or approved (until they've reached the maximum earnings for the achievement).
+* Fixed: Corrected sort order on front-end step output.
+* Fixed: Updated Earned Achievements Widget handling for achievements with spaces and special characters.
+
+= 1.3.2 =
+* Fixed: Small issue with Credly Badge Builder API headers.
+
+= 1.3.1 =
+* Fixed: Achievement step ordering
+* Fixed: Prevent duplicate stock achievement thumbnails per achievement type
+* Fixed: Bug with Credly Badge Builder API connection
+
+= 1.3.0 =
+* Added: Credly Badge Builder – Build your own unique badges directly from the achievement post editor in WordPress (requires free Credly account).
+* Added: badgeos_is_achievement() to check if a given $post or $post_id is a BadgeOS achievement.
+* Added: New [credly_assertion_page] shortcode for Credly Pro users.
+* Added: Specify a custom message to include with Credly notification emails
+* Updated: badgeos_award_achievement_to_user() now checks that the passed $acheivement_id is a real achievement.
+* Updated: New achievements now have a default max earning of 1 (blank for infinite).
+* Updated: BadgeOS Help page now links to Github, instead of just mentioning it.
+* Updated: Detailed "Credly Sharing" options are only visible on the achievement editor when achievement is set to "send to Credly".
+* Updated: "Featured Image" text now says "Achievement Image" when working with an achievement post.
+* Fixed: Added variable type check to badgeos_get_user_achievements() to prevent PHP warning.
+* Fixed: Earned achievements will no longer show "Send to Credly" when setting is disabled.
+
+= 1.2.0 =
+* Added: "Add-ons" menu now has a catalog of new plugins to extend BadgeOS in exciting ways.
+* Added: Introduced a suite of "user activity" functions for tracking a user's active achievements.
+* Updated: Add-Ons admin page now dynamically pulls all available add-ons directly from BadgeOS.org
+* Updated: Improved support for WP Multisite installations
+* Updated: Earned Achievements widget now sorts achievements with newest-earned first.
+* Updated: Earned Achievements widget now supports displaying all OR specific achievement types.
+* Updated: [badgeos_achievements_list] shortcode now supports multiple achievement types, using either type="all" or by separating the achievement names with a comma, like: type="badge,quest,level".
+* Updated: [badgeos_achievements_list] shortcode now supports "orderby" and "order" parameters so you can control how achievements are sorted.
+* Updated: BadgeOS Log Entry functions are now filterable and can be overridden (more on this in 1.3).
+* Updated: Added hooks to Help/Support page so add-ons can include their own content.
+* Updated: We now set a default thumbnail for new achievements and achievement types.
+* Updated: We now display a warning on the Achievement Type editor if a title exceeds 20 characters.
+* Updated: Removed some redundant checks in the rules-engine to make process more performant.
+* Updated: Relocated a few functions to make codebase easier to navigate.
+* Fixed: We now hide the container for an earned achievement's congratulations text if there is no congratulations text.
+* Fixed: The Earned Achievements widget and the Send to Credly functionality sanely fall-back to the parent achievement's thumbnail if the given achievement doesn't have one set.
+* Fixed: Eliminated a bug with the "Add Media" functionality due to a conflict with the Canvas theme by WooThemes.
+* Fixed: Cleared out many minor, but annoying, PHP warnings
 
 = 1.1.0 =
 * Added: New widget to display the Credly Credit Issuer badge

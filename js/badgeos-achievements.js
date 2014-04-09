@@ -1,8 +1,10 @@
 jQuery(document).ready(function($){
 
+	var $body = $( 'body' );
+
 	// Retrieve feedback posts when an approriate action is taken
-	$('body').on( 'change', '.badgeos-feedback-filter select', badgeos_get_feedback );
-	$('body').on( 'submit', '.badgeos-feedback-search-form', function( event ){
+	$body.on( 'change', '.badgeos-feedback-filter select', badgeos_get_feedback );
+	$body.on( 'submit', '.badgeos-feedback-search-form', function( event ){
 		event.preventDefault();
 		badgeos_get_feedback();
 	});
@@ -20,12 +22,15 @@ jQuery(document).ready(function($){
 				'show_attachments': badgeos_feedback.show_attachments,
 				'show_comments':    badgeos_feedback.show_comments,
 				'user_id' :         badgeos_feedback.user_id,
+				'wpms' :            badgeos_feedback.wpms,
 				'search' :          $('.badgeos-feedback-search-input').val()
 			},
 			dataType: 'json',
 			success: function( response ) {
-				console.log($('.badgeos-feedback-search-input').val());
-				console.log( response );
+				if ( window.console ) {
+					console.log($('.badgeos-feedback-search-input').val());
+					console.log( response );
+				}
 				$('.badgeos-spinner').hide();
 				$('.badgeos-feedback-container').html(response.data.feedback);
 			}
@@ -33,7 +38,7 @@ jQuery(document).ready(function($){
 	}
 
 	// Approve/deny feedback
-	$('body').on( 'click', '.badgeos-feedback-buttons .button', function( event ) {
+	$body.on( 'click', '.badgeos-feedback-buttons .button', function( event ) {
 		event.preventDefault();
 		var button = $(this);
 		$.ajax({
@@ -45,7 +50,8 @@ jQuery(document).ready(function($){
 				'feedback_type' :  button.siblings('input[name=feedback_type]').val(),
 				'achievement_id' : button.siblings('input[name=achievement_id]').val(),
 				'user_id' :        button.siblings('input[name=user_id]').val(),
-				'nonce' :          button.siblings('input[name=badgeos_feedback_review]').val()
+				'wpms' :           button.siblings('input[name=wpms]').val(),
+				'nonce' :          button.siblings('input[name=badgeos_feedback_review]').val(),
 			},
 			dataType: 'json',
 			success: function( response ) {
@@ -68,13 +74,23 @@ jQuery(document).ready(function($){
 				'show_child':  badgeos.show_child,
 				'group_id':    badgeos.group_id,
 				'user_id':     badgeos.user_id,
+				'wpms':        badgeos.wpms,
 				'offset':      $('#badgeos_achievements_offset').val(),
 				'count':       $('#badgeos_achievements_count').val(),
 				'filter':      $('#achievements_list_filter').val(),
-				'search':      $('#achievements_list_search').val()
+				'search':      $('#achievements_list_search').val(),
+				'orderby':     badgeos.orderby,
+				'order':       badgeos.order,
+				'include':     badgeos.include,
+				'exclude':     badgeos.exclude,
+				'meta_key':    badgeos.meta_key,
+				'meta_value':  badgeos.meta_value
 			},
 			dataType: 'json',
 			success: function( response ) {
+				if ( window.console ) {
+					console.log(response);
+				}
 				$('.badgeos-spinner').hide();
 				if ( response.data.message === null ) {
 					//alert("That's all folks!");
@@ -166,7 +182,7 @@ jQuery(document).ready(function($){
 	// credly markup
 	var credly = '<div class="credly-share-popup" style="display: none;"><div class="credly-wrap"><span>' + BadgeosCredlyData.message + '</span><div class="badgeos-spinner"></div><span class="credly-message" style="display: none;"><strong class="error">' + BadgeosCredlyData.errormessage + '</strong></span><input type="submit" class="credly-button credly-send" value="' + BadgeosCredlyData.confirm + '"/><a class="credly-button credly-cancel" href="#">' + BadgeosCredlyData.cancel + '</a><div style="clear: both;"></div></div><div style="clear: both;"></div></div>';
 	// add credly popup to dom
-	$('body').append(credly);
+	$body.append(credly);
 	credly = $('.credly-share-popup');
 	var credlyMessage = $('.credly-message');
 	var credlySpinner = $('.badgeos-spinner');
@@ -180,7 +196,7 @@ jQuery(document).ready(function($){
 	credlyize();
 
 	// add credly share button to achievements in widget
-	$('body').on( 'click', '.credly-share', function(event) {
+	$body.on( 'click', '.credly-share', function(event) {
 		event.preventDefault();
 
 		credlyHide();
@@ -190,7 +206,9 @@ jQuery(document).ready(function($){
 		var elPosition = el.offset();
 		var id = parent.data('credlyid');
 
-		console.log( id );
+		if ( window.console ) {
+			console.log( id );
+		}
 
 		// move credly popup
 		credly
@@ -202,7 +220,7 @@ jQuery(document).ready(function($){
 			.data('credlyid',id);
 	});
 
-	$('body')
+	$body
 		.on( 'click', '.credly-button.credly-cancel', function(event) {
 			// Cancel Credly popup
 
@@ -217,7 +235,9 @@ jQuery(document).ready(function($){
 			credlySend.hide();
 			credlySpinner.show();
 
-			console.log( credly.data('credlyid') );
+			if ( window.console ) {
+				console.log( credly.data('credlyid') );
+			}
 			badgeos_send_to_credly( credly.data('credlyid') );
 
 		});
@@ -242,7 +262,9 @@ jQuery(document).ready(function($){
 				'ID': ID
 			},
 			success: function( response ) {
-				console.log(response);
+				if ( window.console ) {
+					console.log(response);
+				}
 				// hide our loading spinner
 				credlySpinner.hide();
 				// show our 'saved' notification briefly
@@ -253,9 +275,11 @@ jQuery(document).ready(function($){
 
 			},
 			error: function(x, t, m) {
-				console.log(x);
-				console.log(t);
-				console.log(m);
+				if ( window.console ) {
+					console.log(x);
+					console.log(t);
+					console.log(m);
+				}
 
 				if( t === 'timeout' ) {
 

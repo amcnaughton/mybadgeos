@@ -31,4 +31,34 @@ jQuery(document).ready(function($) {
 		$('#credly-settings tr, #credly-settings .toggle').toggle();
 	});
 
+	// Throw a warning on Achievement Type editor if title is > 20 characters
+	$('#titlewrap').on( 'keyup', 'input[name=post_title]', function() {
+
+		// Make sure we're editing an achievement type
+		if ( 'achievement-type' == $('#post_type').val() ) {
+			// Cache the title input selector
+			var $title = $(this);
+			if ( $title.val().length > 20 ) {
+				// Set input to look like danger
+				$title.css({'background':'#faa', 'color':'#a00', 'border-color':'#a55' });
+
+				// Output a custom warning (and delete any existing version of that warning)
+				$('#title-warning').remove();
+				$title.parent().append('<p id="title-warning">Achievement Type supports a maximum of 20 characters. Please choose a shorter title.</p>');
+			} else {
+				// Set the input to standard style, hide our custom warning
+				$title.css({'background':'#fff', 'color':'#333', 'border-color':'#DFDFDF'});
+				$('#title-warning').remove();
+			}
+		}
+	} );
+
+	// Show notification custom message input if setting is enabled
+	$('#credly_badge_sendemail_add_message').change( function() {
+		if ( 'true' == $(this).val() )
+			$('.credly-notifications-message').show();
+		else
+			$('.credly-notifications-message').hide();
+	}).change();
+
 });

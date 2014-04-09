@@ -1,7 +1,6 @@
+/* For the settings icon */
 #icon-badgeos_badgeos {
-	/* TR: background-image: url('../images/badgeos_screen_icon.png'); */
-	background-image: url('../images/trophy_screen_icon.png');
-	
+	background-image: url('../images/badgeos_screen_icon.png');
 }
 
 /* For the Triggers UI */
@@ -40,7 +39,55 @@ li.step-row .delete-step {
 .badgeos-table tr {
 	/*padding: 5px 10px;*/
 }
-.badgeos-table .th {
+.badgeos-table th {
 	font-weight: bold;
+	padding: 8px 10px;
 	text-transform: uppercase;
+}
+
+/* License Settings */
+.badgeos-license-status {
+	background: #eee;
+	color: #333;
+	padding: 3px 8px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+.badgeos-license-status.invalid,
+.badgeos-license-status.failed {
+	background: #faa;
+	border-color:#a55;
+	color:#a00;
+}
+.badgeos-license-status.valid,
+.badgeos-license-status.active {
+	background: #ac7;
+	border-color:#7a5;
+	color:#250;
+}
+
+/* Add-ons page */
+.addon {
+	display: block;
+	background: #fafafa;
+	border: 1px solid #eee;
+	padding: 1em;
+	margin: 0 1em 1em 0;
+	min-width: 200px;
+	max-width: 25%;
+	position: relative;
+	float: left;
+}
+.addon:nth-child(3n+4) {
+	clear: both;
+}
+.addon .thumbnail-link {
+	display: block;
+	margin:0 auto;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+}
+.addon img {
+	max-width: 100%;
 }
