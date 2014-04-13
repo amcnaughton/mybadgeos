@@ -69,7 +69,7 @@ function badgeos_get_user_achievements( $args = array() ) {
 	}
 
 	// merge and create instance array if required
-	if ( $args['merge'] ) {
+	if ( $args['merge'] && !empty($achievements)) {
 		$achievements = badgeos_array_sort_by_key( $achievements, 'ID' );
 	
 		foreach ( $achievements as $key => $achievement ) {
@@ -95,7 +95,9 @@ function badgeos_get_user_achievements( $args = array() ) {
 	} 
 	
 	// sort by specified date order
-	$achievements = badgeos_array_sort_by_key( $achievements, 'date_earned', $args['sort_order'] );
+	if(!empty($achievements))
+	   $achievements = badgeos_array_sort_by_key( $achievements, 'date_earned', $args['sort_order'] );
+	
 // 		pr($achievements);
 	// Return our $achievements array_values (so our array keys start back at 0), or an empty array
 	return ( is_array( $achievements ) ? array_values( $achievements ) : array());
