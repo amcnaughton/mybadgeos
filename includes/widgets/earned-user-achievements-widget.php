@@ -93,7 +93,7 @@ class earned_user_achievements_widget extends WP_Widget {
 				
 			if ( is_array( $achievements ) && ! empty( $achievements ) ) {
 
-    			$number_to_show = absint( $instance['number'] );
+			    $number_to_show = absint( $instance['number'] );
     			$show_text = absint( $instance['show_text'] );			
     			$show_icon = absint( $instance['show_icon'] );
     			$icon_size = absint( $instance['icon_size'] );
@@ -111,13 +111,13 @@ class earned_user_achievements_widget extends WP_Widget {
 
 				echo '<ul class="widget-achievements-listing">';
 
-			// auto adjust css height & margin for icon size
-			echo '<style type="text/css">';
-				echo '.widget-achievements-listing .has-thumb .widget-badgeos-item-title { margin-left: '.($icon_size + 10).'px;}';
-				echo '.widget-achievements-listing li.has-thumb { min-height: '.($icon_size + 5).'px;}';
-				echo '.badgeos-icon { position: relative; width: '.($icon_size+6).'px; height: '.($icon_size+6).'px; cursor:pointer; }';
-			echo '</style>';
-
+    			// auto adjust css height & margin for icon size
+    			echo '<style type="text/css">';
+    				echo '.widget-achievements-listing .has-thumb .widget-badgeos-item-title { margin-left: '.($icon_size + 10).'px;}';
+    				echo '.widget-achievements-listing li.has-thumb { min-height: '.($icon_size + 5).'px;}';
+    				echo '.badgeos-icon { position: relative; width: '.($icon_size+6).'px; height: '.($icon_size+6).'px; cursor:pointer; }';
+    			echo '</style>';
+    			 
 				foreach ( $achievements as $achievement ) {
 
 					//verify achievement type is set to display in the widget settings
@@ -195,6 +195,9 @@ class earned_user_achievements_widget extends WP_Widget {
 
 				echo '</ul><!-- widget-achievements-listing -->';
 
+			}
+			else {			
+// 			    echo 'You have n  ot yet earned any achievements.';
 			}
 
 		} else {

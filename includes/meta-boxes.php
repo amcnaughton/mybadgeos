@@ -154,17 +154,18 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 					'id'      => $prefix . 'notification_type',
 					'type'    => 'select',
 					'options' => array(
-							array( 'name' => 'Standard (upper right, fades away)',    	'value' => 'standard' ),
-							array( 'name' => 'Fancy (middle of screen dialog box)',   	'value' => 'popup' ),
-							array( 'name' => 'None (silent)',   						'value' => 'none' ),
+							array( 'name' => 'Standard (upper right, fades away)',    	      'value' => 'standard' ),
+							array( 'name' => 'Fancy (middle of screen dialog box)',   	      'value' => 'popup' ),
+							array( 'name' => 'Generic (middle of screen empty dialog box)',   'value' => 'generic' ),
+							array( 'name' => 'None (silent)',   						      'value' => 'none' ),
 					)
 			),
 			array(
 				'name' => __( 'Maximum Earnings', 'badgeos' ),
-				'desc' => ' '.__( 'Number of times a user can earn this badge (set to 0 for no maximum).', 'badgeos' ),
+				'desc' => ' '.__( 'Number of times a user can earn this badge (set to 0 or leave blank for no maximum).', 'badgeos' ),
 				'id'   => $prefix . 'maximum_earnings',
 				'type' => 'text_small',
-				'std' => '1',
+// 				'std' => '1',
 			),
 			array(
 				'name'    => __( 'Hidden?', 'badgeos' ),
