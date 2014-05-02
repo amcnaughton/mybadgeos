@@ -146,7 +146,7 @@ function badgeos_custom_metaboxes( array $meta_boxes ) {
 				'name' => __( 'Congratulations Text', 'badgeos' ),
 				'desc' => __( 'Displayed after achievement is earned.', 'badgeos' ),
 				'id'   => $prefix . 'congratulations_text',
-				'type' => 'textarea',
+				'type' => 'textarea_code',
 			),
 			array(
 					'name'    => __( 'Notification Type', 'badgeos' ),

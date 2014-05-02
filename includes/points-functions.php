@@ -61,7 +61,7 @@ function badgeos_update_users_points( $user_id = 0, $new_points = 0, $admin_id =
 
 // TR: begin
 	// call action
-	do_action('badgeos_add_points', $user_id, $achievement_id, $new_points);
+// 	do_action('badgeos_add_points', $user_id, $achievement_id, $new_points);
 // TR: end
 	
 	return $total_points;
