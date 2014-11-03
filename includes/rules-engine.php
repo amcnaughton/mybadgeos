@@ -328,10 +328,13 @@ function badgeos_user_has_access_to_achievement( $user_id = 0, $achievement_id =
 	// If we have access, and the achievement has a parent...
 	if ( $return && $parent_achievement = badgeos_get_parent_of_achievement( $achievement_id ) ) {
 
-		// If we don't have access to the parent, we do not have access to this
-		if ( ! badgeos_user_has_access_to_achievement( $user_id, $parent_achievement->ID, $this_trigger, $site_id, $args ) ) {
-			$return = false;
-		}
+	    // HACK: don't check parent or it breaks the Booker -> Super Booker use case
+	    if(0) {
+    		// If we don't have access to the parent, we do not have access to this
+    		if ( ! badgeos_user_has_access_to_achievement( $user_id, $parent_achievement->ID, $this_trigger, $site_id, $args ) ) {
+    			$return = false;
+    		}
+	    }
 
 		// If the parent requires sequential steps, confirm we've earned all previous steps
 		if ( $return && badgeos_is_achievement_sequential( $parent_achievement->ID ) ) {
